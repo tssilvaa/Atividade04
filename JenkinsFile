@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "M3"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', url: 'https://github.com/tssilvaa/Atividade04'
+
+                sh "cd meu-app; mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                success {
+                    junit '**/Atividade04/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'Atividade04/target/*.jar'
+                }
+            }
+        }
+    }
+}
