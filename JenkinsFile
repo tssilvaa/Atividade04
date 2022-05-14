@@ -15,8 +15,8 @@ pipeline {
 
             post {
                 success {
-                    junit '**/Atividade04/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'Atividade04/target/*.jar'
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
